@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Player</title>
+
+    <!-- CSS styles for this page -->
+    <style>
+        body {
+        font-family: Arial;
+        background-color: #f0f4f8;
+        margin: 0px;
+        padding: 0px;
+        }
+
+        /* Green header bar */
+        .header {
+            background-color: green;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+          margin: 0px;
+          font-size: 28px;
+        }
+
+        /* The white form box */
+        .box {
+          width: 450px;
+          margin: 40px auto;
+          background-color: white;
+          padding: 30px;
+          border: 1px solid #cccccc;
+        }
+
+        .box h2 {
+            color: green;
+            margin-top: 0px;
+        }
+
+        /* Each label above the input */
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #333333;
+        }
+
+        /* Style for the text input boxes */
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #cccccc;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        /* The submit button */
+        .btn1 {
+          margin-top: 20px;
+          padding: 10px 25px;
+          background-color: green;
+          color: white;
+          border: none;
+          font-size: 15px;
+          cursor: pointer;
+        }
+
+        .btn1:hover {
+            background-color: darkgreen;
+        }
+
+        /* The back link at the bottom */
+        .backlink {
+            display: inline-block;
+            margin-top: 15px;
+            color: green;
+            text-decoration: none;
+        }
+    </style>
+
+    <!-- JavaScript to check that no field is empty before submitting -->
+    <script>
+
+        // This function runs when the form is submitted
+        function checkForm() {
+
+            // Get the value from the name input box
+            var x = document.getElementById('name').value;
+
+            // Get the value from the jersey number input box
+            var y = document.getElementById('jersey_number').value;
+
+            // Get the value from the position input box
+            var z = document.getElementById('position').value;
+
+            // Get the value from the team input box
+            var t = document.getElementById('team').value;
+
+            // Check if the name field is empty
+            if (x == '') {
+                alert('Please enter the player name.');
+                return false;
+            }
+
+            // Check if jersey number is empty
+            if (y == '') {
+                alert('Please enter the jersey number.');
+                return false;
+            }
+
+            // Check if position is empty
+            if (z == '') {
+                alert('Please enter the position.');
+                return false;
+            }
+
+            // Check if team is empty
+            if (t == '') {
+                alert('Please enter the team name.');
+                return false;
+            }
+
+            // If all fields are filled, allow the form to submit
+            return true;
+        }
+    </script>
+
+</head>
+<body>
+
+    <!-- This is the top green header -->
+    <div class="header">
+        <h1>Football Player Record System</h1>
+    </div>
+
+    <!-- This is the form box -->
+    <div class="box">
+        <h2>Add New Player</h2>
+
+        <!-- The form calls checkForm before submitting -->
+        <form method="POST" onsubmit="return checkForm()">
+            {% csrf_token %}
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+
+            <label for="jersey_number">Jersey Number:</label>
+            <input type="text" id="jersey_number" name="jersey_number">
+
+            <label for="position">Position:</label>
+            <input type="text" id="position" name="position">
+
+            <label for="team">Team:</label>
+            <input type="text" id="team" name="team">
+
+            <br>
+            <!-- This button submits the form -->
+            <button type="submit" class="btn1">Save Player</button>
+        </form>
+
+        <br>
+        <!-- Link to go back to the player list -->
+        <a href="/players/" class="backlink">Back to Player List</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+
+    <!-- CSS styles for the login page -->
+    <style>
+        body {
+        font-family: Arial;
+        background-color: #f0f4f8;
+        margin: 0px;
+        padding: 0px;
+        }
+
+        /* This is the green bar at the top */
+        .header {
+            background-color: green;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+          margin: 0px;
+          font-size: 28px;
+        }
+
+        /* The white login box in the middle of the page */
+        .box {
+          width: 350px;
+          margin: 50px auto;
+          background-color: white;
+          padding: 30px;
+          border: 1px solid #cccccc;
+        }
+
+        /* The Login heading */
+        .box h2 {
+            color: green;
+            margin-top: 0px;
+            text-align: center;
+        }
+
+        /* Label text above each input */
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #333333;
+        }
+
+        /* The text input boxes */
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #cccccc;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        /* Red error message that shows when login fails */
+        .errormsg {
+            color: red;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        /* The login button - green color */
+        .btn1 {
+          width: 100%;
+          margin-top: 20px;
+          padding: 10px;
+          background-color: green;
+          color: white;
+          border: none;
+          font-size: 15px;
+          cursor: pointer;
+        }
+
+        /* Change button color when mouse hovers */
+        .btn1:hover {
+            background-color: darkgreen;
+        }
+
+        /* Small text at bottom with signup link */
+        .bottomtext {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .bottomtext a {
+            color: green;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- This is the green header bar -->
+    <div class="header">
+        <h1>Football Player Record System</h1>
+    </div>
+
+    <!-- Login form box -->
+    <div class="box">
+        <h2>Login</h2>
+
+        <!-- This form sends username and password to the server -->
+        <form method="POST">
+            {% csrf_token %}
+
+            <!-- Username field -->
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+
+            <!-- Password field -->
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+
+            <!-- Show error message if username or password is wrong -->
+            {% if error %}
+            <p class="errormsg">{{ error }}</p>
+            {% endif %}
+
+            <!-- Click this button to login -->
+            <button type="submit" class="btn1">Login</button>
+        </form>
+
+        <!-- Link for new users to sign up -->
+        <div class="bottomtext">
+            Don't have an account? <a href="/signup/">Sign Up</a>
+        </div>
+    </div>
+
+</body>
+</html>

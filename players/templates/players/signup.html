@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up</title>
+
+    <!-- Styles for the signup page -->
+    <style>
+        body {
+        font-family: Arial;
+        background-color: #f0f4f8;
+        margin: 0px;
+        padding: 0px;
+        }
+
+        /* Green header bar */
+        .header {
+            background-color: green;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+          margin: 0px;
+          font-size: 28px;
+        }
+
+        /* White signup form box */
+        .box {
+          width: 350px;
+          margin: 50px auto;
+          background-color: white;
+          padding: 30px;
+          border: 1px solid #cccccc;
+        }
+
+        /* Heading inside the box */
+        .box h2 {
+            color: green;
+            margin-top: 0px;
+            text-align: center;
+        }
+
+        /* Label above each input */
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #333333;
+        }
+
+        /* Input fields */
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #cccccc;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        /* Error message shown in red */
+        .errormsg {
+            color: red;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        /* Sign up button */
+        .btn1 {
+          width: 100%;
+          margin-top: 20px;
+          padding: 10px;
+          background-color: green;
+          color: white;
+          border: none;
+          font-size: 15px;
+          cursor: pointer;
+        }
+
+        .btn1:hover {
+            background-color: darkgreen;
+        }
+
+        /* The small text below with the login link */
+        .bottomtext {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .bottomtext a {
+            color: green;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Green header at top -->
+    <div class="header">
+        <h1>Football Player Record System</h1>
+    </div>
+
+    <!-- Signup form box -->
+    <div class="box">
+        <h2>Create an Account</h2>
+
+        <!-- This form sends the signup data to the server -->
+        <form method="POST">
+            {% csrf_token %}
+
+            <!-- Username input field -->
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+
+            <!-- Password input field -->
+            <label for="password1">Password:</label>
+            <input type="password" id="password1" name="password1">
+
+            <!-- Confirm password input field -->
+            <label for="password2">Confirm Password:</label>
+            <input type="password" id="password2" name="password2">
+
+            <!-- Show error message if passwords do not match -->
+            {% if error %}
+            <p class="errormsg">{{ error }}</p>
+            {% endif %}
+
+            <!-- This button submits the signup form -->
+            <button type="submit" class="btn1">Sign Up</button>
+        </form>
+
+        <!-- Link for people who already have an account -->
+        <div class="bottomtext">
+            Already have an account? <a href="/login/">Login</a>
+        </div>
+    </div>
+
+</body>
+</html>

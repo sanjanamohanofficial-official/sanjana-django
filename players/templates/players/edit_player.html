@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Player</title>
+
+    <!-- CSS for the edit player page -->
+    <style>
+        body {
+        font-family: Arial;
+        background-color: #f0f4f8;
+        margin: 0px;
+        padding: 0px;
+        }
+
+        /* Green header at the top of the page */
+        .header {
+            background-color: green;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+          margin: 0px;
+          font-size: 28px;
+        }
+
+        /* The white form box in the middle */
+        .box {
+          width: 450px;
+          margin: 40px auto;
+          background-color: white;
+          padding: 30px;
+          border: 1px solid #cccccc;
+        }
+
+        /* Heading inside the box */
+        .box h2 {
+            color: green;
+            margin-top: 0px;
+        }
+
+        /* Label above each input field */
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #333333;
+        }
+
+        /* Style for all the text input boxes */
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #cccccc;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        /* The update button */
+        .btn1 {
+          margin-top: 20px;
+          padding: 10px 25px;
+          background-color: green;
+          color: white;
+          border: none;
+          font-size: 15px;
+          cursor: pointer;
+        }
+
+        .btn1:hover {
+            background-color: darkgreen;
+        }
+
+        /* Link to go back to the player list */
+        .backlink {
+            display: inline-block;
+            margin-top: 15px;
+            color: green;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header at the top -->
+    <div class="header">
+        <h1>Football Player Record System</h1>
+    </div>
+
+    <!-- The edit form box -->
+    <div class="box">
+        <h2>Edit Player</h2>
+
+        <!-- Form to update the player details -->
+        <form method="POST">
+            {% csrf_token %}
+
+            <!-- Name field with current value already filled in -->
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="{{ player.name }}">
+
+            <!-- Jersey number field with current value -->
+            <label for="jersey_number">Jersey Number:</label>
+            <input type="text" id="jersey_number" name="jersey_number" value="{{ player.jersey_number }}">
+
+            <!-- Position field with current value -->
+            <label for="position">Position:</label>
+            <input type="text" id="position" name="position" value="{{ player.position }}">
+
+            <!-- Team field with current value -->
+            <label for="team">Team:</label>
+            <input type="text" id="team" name="team" value="{{ player.team }}">
+
+            <br>
+            <!-- This button saves the changes -->
+            <button type="submit" class="btn1">Update Player</button>
+        </form>
+
+        <br>
+        <!-- Link to go back without saving -->
+        <a href="/players/" class="backlink">Back to Player List</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Players</title>
+
+    <!-- Styles for the player list page -->
+    <style>
+        body {
+        font-family: Arial;
+        background-color: #f0f4f8;
+        margin: 0px;
+        padding: 0px;
+        }
+
+        /* Green header at the top */
+        .header {
+            background-color: green;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+          font-size: 28px;
+          margin: 0px;
+        }
+
+        /* The bar that shows the username and logout link */
+        .topbar {
+        background-color: #e8f5e9;
+        padding: 10px 30px;
+        border-bottom: 1px solid #cccccc;
+        overflow: hidden;
+        }
+
+        /* The welcome text on the left side */
+        .welcome-text {
+            float: left;
+            font-size: 15px;
+            color: #333333;
+        }
+
+        /* The logout link on the right side */
+        .logout-link {
+            float: right;
+            color: red;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        /* The main white container box */
+        .box {
+          width: 850px;
+          margin: 30px auto;
+          background-color: white;
+          padding: 25px;
+          border: 1px solid #cccccc;
+        }
+
+        .box h2 {
+            color: green;
+            margin-top: 0px;
+        }
+
+        /* The table that shows all players */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        /* Table header row - green background */
+        th {
+            background-color: green;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        /* Table data cells */
+        td {
+        padding: 10px;
+        border-bottom: 1px solid #dddddd;
+        }
+
+        /* Highlight row when mouse hovers over it */
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        /* Style for the Edit link */
+        .edit-link {
+            color: green;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Style for the Delete link */
+        .delete-link {
+        color: red;
+        text-decoration: none;
+        font-weight: bold;
+        margin-left: 10px;
+        }
+
+        /* The add new player button */
+        .addbtn {
+            display: inline-block;
+            margin-bottom: 15px;
+            padding: 9px 22px;
+            background-color: green;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .addbtn:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Green header bar at top -->
+    <div class="header">
+        <h1>Football Player Record System</h1>
+    </div>
+
+    <!-- Show the logged in user name and a logout link -->
+    <div class="topbar">
+        <span class="welcome-text">Welcome, {{ user.username }}!</span>
+        <a href="/logout/" class="logout-link">Logout</a>
+    </div>
+
+    <!-- Main content box -->
+    <div class="box">
+        <h2>All Players</h2>
+
+        <!-- Button to go to the add player page -->
+        <a href="/add/" class="addbtn">+ Add New Player</a>
+
+        <!-- This table shows all the players from the database -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Sl. No.</th>
+                    <th>Name</th>
+                    <th>Jersey Number</th>
+                    <th>Position</th>
+                    <th>Team</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through each player and show a row -->
+                {% for player in players %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ player.name }}</td>
+                    <td>{{ player.jersey_number }}</td>
+                    <td>{{ player.position }}</td>
+                    <td>{{ player.team }}</td>
+                    <td>
+                        <!-- Edit link goes to the edit page for this player -->
+                        <a href="/edit/{{ player.id }}/" class="edit-link">Edit</a>
+                        <!-- Delete link removes this player -->
+                        <a href="/delete/{{ player.id }}/" class="delete-link">Delete</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <!-- This shows when there are no players in the database -->
+                    <td colspan="6" style="text-align:center; color:#999999;">No players found. Add your first player!</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
